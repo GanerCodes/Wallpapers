@@ -23,14 +23,14 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
             1.05
         )
     );
-    // / (0.9 + 0.1 * sq(sin(7.0 * ua - time)))
-    float q = max(
-        bk * min(1.0, max(d - 0.2, 0.0)),
-        3.0 * (0.93 - pow(abs(v), 0.75))
-    );
+    
+    // Brighter mode
+    // float q = max(bk * min(1.0, max(d - 0.2, 0.0)), 3.0 * (0.93 - pow(abs(v), 0.75)));
+    // Blackout mode
+    float q = 2.35 * (0.93 - pow(abs(v), 0.75));
     
     float h = a / PI;
-    float s = 0.6 * (1.0 - pow(max(0.0, q - 1.5), 1.2 + q2 + 1.0));
+    float s = 0.875 * (1.0 - pow(max(0.0, q - 1.5), 1.2 + q2 + 1.0));
     float b = pow(q, 0.85);
     vec3 color = hsv2rgb(vec3(0.5 * h, s, b));
     
